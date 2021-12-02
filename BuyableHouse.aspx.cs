@@ -9,7 +9,7 @@ using System.Data;
 using Npgsql;
 using System.Globalization;
 
-namespace project
+namespace CSE412_Group_Project_WebApp
 {
     public partial class BuyableHouse : System.Web.UI.Page
     {

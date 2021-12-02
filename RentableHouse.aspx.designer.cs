@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace project
+namespace CSE412_Group_Project_WebApp
 {
 
 

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace project
+namespace CSE412_Group_Project_WebApp
 {
 
 
-    public partial class WebForm1
+    public partial class RenterPreference
     {
 
         /// <summary>

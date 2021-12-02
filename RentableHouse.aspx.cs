@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using Npgsql;
 using System.Data;
 
-namespace project
+namespace CSE412_Group_Project_WebApp
 {
     public partial class RentableHouse : System.Web.UI.Page
     {

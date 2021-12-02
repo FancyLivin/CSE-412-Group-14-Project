@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BuyerPreference.aspx.cs" Inherits="project.BuyerPreference" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BuyerPreference.aspx.cs" Inherits="CSE412_Group_Project_WebApp.BuyerPreference" %>
 
 <!DOCTYPE html>
 

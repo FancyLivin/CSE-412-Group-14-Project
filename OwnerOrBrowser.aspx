@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OwnerOrBrowser.aspx.cs" Inherits="project.BuyerOrRenter" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OwnerOrBrowser.aspx.cs" Inherits="CSE412_Group_Project_WebApp.OwnerOrBrowser" %>
 
 <!DOCTYPE html>
 

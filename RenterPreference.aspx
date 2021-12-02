@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RenterPreference.aspx.cs" Inherits="project.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RenterPreference.aspx.cs" Inherits="CSE412_Group_Project_WebApp.RenterPreference" %>
 
 <!DOCTYPE html>
 

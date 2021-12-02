@@ -18,7 +18,7 @@ namespace CSE412_Group_Project_WebApp
             conn.Open();
             NpgsqlCommand comm = new NpgsqlCommand();
             comm.Connection = conn;
-            comm.CommandText = "SELECT * FROM house WHERE \"clientID\"=@id";
+            comm.CommandText = "SELECT * FROM house WHERE \"ownerID\"=@id";
             comm.Parameters.AddWithValue("id", clientID);
             NpgsqlDataAdapter nda = new NpgsqlDataAdapter(comm);
             DataTable dt = new DataTable();
@@ -39,18 +39,23 @@ namespace CSE412_Group_Project_WebApp
             conn.Open();
             NpgsqlCommand comm = new NpgsqlCommand();
             comm.Connection = conn;
-            comm.CommandText = "SELECT * FROM house WHERE \"clientID\"=@id AND \"propID\"=@pid";
+            comm.CommandText = "SELECT * FROM house WHERE \"ownerID\"=@id AND \"propID\"=@pid";
             comm.Parameters.AddWithValue("id", clientID);
             comm.Parameters.AddWithValue("pid", propID);
             NpgsqlDataReader rdr = comm.ExecuteReader();
             if (rdr.Read())
             {
+                comm.Dispose();
+                conn.Close();
+                conn = new NpgsqlConnection("Server=localhost;Port=5432;Database=TEAM14;User Id=postgres;Password=password");
+                conn.Open();
                 comm = new NpgsqlCommand();
                 comm.Connection = conn;
                 comm.CommandText = "DELETE FROM house WHERE \"propID\"=@pid";
                 comm.Parameters.AddWithValue("pid", propID);
                 comm.ExecuteNonQuery();
                 Label3.Text = "Property with id " + propID.ToString() + " successfully deleted";
+                conn.Close();
             }
             else
             {

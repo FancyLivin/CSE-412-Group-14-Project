@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BuyableHouse.aspx.cs" Inherits="project.BuyableHouse" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="BuyableHouse.aspx.cs" Inherits="CSE412_Group_Project_WebApp.BuyableHouse" %>
 
 <!DOCTYPE html>
 

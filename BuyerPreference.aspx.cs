@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Npgsql;
 
-namespace project
+namespace CSE412_Group_Project_WebApp
 {
     
     public partial class BuyerPreference : System.Web.UI.Page

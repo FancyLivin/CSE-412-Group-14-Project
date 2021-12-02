@@ -11,7 +11,7 @@ namespace CSE412_Group_Project_WebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Redirect("Login_Register.aspx");
         }
     }
 }

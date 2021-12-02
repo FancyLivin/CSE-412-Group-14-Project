@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace project
+namespace CSE412_Group_Project_WebApp
 {
     public partial class OwnerOrBrowser : System.Web.UI.Page
     {

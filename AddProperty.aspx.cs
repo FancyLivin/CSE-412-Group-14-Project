@@ -94,7 +94,7 @@ namespace CSE412_Group_Project_WebApp
             string address = addressTextBox.Text;
             string city = cityTextBox.Text;
             string country = countryTextBox.Text;
-            string yearBuilt = yearTextBox.Text;
+            int yearBuilt = Convert.ToInt32(yearTextBox.Text);
             int sqft = Convert.ToInt32(sqftTextBox.Text);
             int beds = Convert.ToInt32(bedsTextBox.Text);
             int baths = Convert.ToInt32(bathsTextBox.Text);
@@ -133,10 +133,13 @@ namespace CSE412_Group_Project_WebApp
             if (rdr.Read())
             {
                 propID = rdr.GetInt32(0) + 1;
+                con.Close();
             }
             sql = "INSERT INTO house(\"propID\", address, city, country, \"yearBuilt\"," +
                 "sqft, beds, baths, \"houseStyle\", \"ownerID\") VALUES(" +
                 "@pid, @address, @city, @country, @yearBuilt, @sqft, @beds, @baths, @houseStyle, @id)";
+            con = new NpgsqlConnection("Host=localhost;Username=postgres;Password=password;Database=TEAM14");
+            con.Open();
             cmd = new NpgsqlCommand(sql, con);
             cmd.Parameters.AddWithValue("address", address);
             cmd.Parameters.AddWithValue("city", city);
@@ -150,7 +153,9 @@ namespace CSE412_Group_Project_WebApp
             cmd.Parameters.AddWithValue("pid", propID);
             cmd.Prepare();
             cmd.ExecuteNonQuery();
-
+            con.Close();
+            con = new NpgsqlConnection("Host=localhost;Username=postgres;Password=password;Database=TEAM14");
+            con.Open();
             int priceMonth = Convert.ToInt32(priceTextBox.Text);
             int yrsToRent = Convert.ToInt32(rentTimeTextBox.Text);
             sql = "INSERT INTO rentable(\"propID\", \"priceMonth\", \"yrsToRent\")" +
