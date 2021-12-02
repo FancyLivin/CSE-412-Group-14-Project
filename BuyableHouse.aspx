@@ -15,7 +15,7 @@
             </asp:GridView>
             <br />
             <br />
-            Which house do you want to rent?<br />
+            Which house do you want to buy?<br />
             <br />
             Enter property ID:
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
