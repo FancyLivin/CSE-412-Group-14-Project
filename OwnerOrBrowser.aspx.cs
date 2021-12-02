@@ -16,7 +16,7 @@ namespace project
 
         protected void ownerButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerPreference.aspx");
+            Response.Redirect("OwnerMenu.aspx");
         }
 
         protected void browserButton_Click(object sender, EventArgs e)
