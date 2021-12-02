@@ -11,7 +11,7 @@ namespace project
 {
 
 
-    public partial class BuyerOrRenter
+    public partial class OwnerOrBrowser
     {
 
         /// <summary>
