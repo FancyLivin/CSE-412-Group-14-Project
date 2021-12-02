@@ -735,5 +735,22 @@ namespace CSE412_Group_Project_WebApp
 
         }
 
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            NpgsqlConnection conn = new NpgsqlConnection("Host=localhost;Username=postgres;Password=password;Database=TEAM14");
+            conn.Open();
+            NpgsqlCommand comm = new NpgsqlCommand();
+            comm.Connection = conn;
+            comm.CommandType = CommandType.Text;
+
+            comm.CommandText = "UPDATE house SET \"ownerID\" = @id WHERE \"propID\" = @pid";
+            comm.Parameters.Add(new NpgsqlParameter("@id", int.Parse(Session["clientID"].ToString())));
+            comm.Parameters.Add(new NpgsqlParameter("@pid", int.Parse(TextBox1.Text)));
+            comm.ExecuteNonQuery();
+            comm.Dispose();
+            conn.Close();
+
+            Label2.Text = "Your purchase is successfully recorded.";
+        }
     }
 }

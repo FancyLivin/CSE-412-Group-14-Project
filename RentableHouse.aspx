@@ -18,7 +18,7 @@
             <br />
             <br />
             <br />
-            Which house you want to rent?<br />
+            Which house do you want to rent?<br />
             <br />
             Enter property ID:
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>

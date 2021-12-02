@@ -1473,7 +1473,7 @@ namespace CSE412_Group_Project_WebApp
             comm.Dispose();
             conn.Close();
 
-            Label2.Text = "Your information is recored.";
+            Label2.Text = "Your rental is successfully recorded.";
         }
     }
 }

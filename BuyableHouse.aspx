@@ -15,6 +15,16 @@
             </asp:GridView>
             <br />
             <br />
+            Which house do you want to rent?<br />
+            <br />
+            Enter property ID:
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="submit" />
+            <br />
+            <br />
+            <asp:Label ID="Label2" runat="server"></asp:Label>
         </div>
     </form>
 </body>
