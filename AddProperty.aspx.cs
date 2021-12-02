@@ -20,7 +20,7 @@ namespace CSE412_Group_Project_WebApp
             string address = addressTextBox.Text;
             string city = cityTextBox.Text;
             string country = countryTextBox.Text;
-            string yearBuilt = yearTextBox.Text;
+            int yearBuilt = Convert.ToInt32(yearTextBox.Text);
             int sqft = Convert.ToInt32(sqftTextBox.Text);
             int beds = Convert.ToInt32(bedsTextBox.Text);
             int baths = Convert.ToInt32(bathsTextBox.Text);
@@ -60,6 +60,9 @@ namespace CSE412_Group_Project_WebApp
             {
                 propID = rdr.GetInt32(0) + 1;
             }
+            con.Close();
+            con = new NpgsqlConnection("Host=localhost;Username=postgres;Password=password;Database=TEAM14");
+            con.Open();
             sql = "INSERT INTO house(\"propID\", address, city, country, \"yearBuilt\"," +
                 "sqft, beds, baths, \"houseStyle\", \"ownerID\") VALUES(" +
                 "@pid, @address, @city, @country, @yearBuilt, @sqft, @beds, @baths, @houseStyle, @id)";
@@ -76,9 +79,11 @@ namespace CSE412_Group_Project_WebApp
             cmd.Parameters.AddWithValue("pid", propID);
             cmd.Prepare();
             cmd.ExecuteNonQuery();
-
+            con.Close();
+            con = new NpgsqlConnection("Host=localhost;Username=postgres;Password=password;Database=TEAM14");
+            con.Open();
             int price = Convert.ToInt32(priceTextBox.Text);
-            sql = "Insert INTO buyable \"propID\", \"price\") VALUES(@propID, @price)";
+            sql = "Insert INTO buyable(\"propID\", \"price\") VALUES(@propID, @price)";
             cmd = new NpgsqlCommand(sql, con);
             cmd.Parameters.AddWithValue("propID", propID);
             cmd.Parameters.AddWithValue("price", price);
