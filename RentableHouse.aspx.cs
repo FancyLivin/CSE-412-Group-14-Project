@@ -1455,5 +1455,25 @@ namespace CSE412_Group_Project_WebApp
             GridView1.DataSource = dt;
             GridView1.DataBind();
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+            NpgsqlConnection conn = new NpgsqlConnection("Host=localhost;Username=postgres;Password=password;Database=TEAM14");
+            conn.Open();
+            NpgsqlCommand comm = new NpgsqlCommand();
+            comm.Connection = conn;
+            comm.CommandType = CommandType.Text;
+
+            comm.CommandText = "INSERT INTO renting VALUES(@pI, @cI, @rentTime)";
+            comm.Parameters.Add(new NpgsqlParameter("@cI", int.Parse(Session["clientID"].ToString())));
+            comm.Parameters.Add(new NpgsqlParameter("@pI", int.Parse(TextBox1.Text)));
+            comm.Parameters.Add(new NpgsqlParameter("@rentTime", int.Parse(TextBox2.Text)));
+            comm.ExecuteNonQuery();
+            comm.Dispose();
+            conn.Close();
+
+            Label2.Text = "Your information is recored.";
+        }
     }
 }

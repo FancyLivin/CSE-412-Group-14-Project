@@ -16,7 +16,7 @@
             <asp:TextBox ID="priceTextBox" runat="server"></asp:TextBox>
             <br />
             <br />
-            Rent Time(if applicable):
+            Rent Time(Years, if applicable):
             <asp:TextBox ID="rentTimeTextBox" runat="server"></asp:TextBox>
             <br />
             <br />

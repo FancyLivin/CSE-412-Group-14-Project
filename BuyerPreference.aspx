@@ -44,7 +44,16 @@
             </asp:DropDownList>
             <br />
             <br />
+            <br />
+            <asp:Label ID="Label2" runat="server"></asp:Label>
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Get your old preference" />
+            <br />
+            <br />
             <asp:Button ID="submitButton2" runat="server" Text="submit" OnClick="submitButton2_Click" />
+            <br />
+            <br />
+            <asp:Label ID="Label3" runat="server"></asp:Label>
             <br />
         </div>
     </form>
