@@ -56,10 +56,10 @@
             </asp:DropDownList>
             <br />
             <br />
-            <asp:Button ID="SaleButton" runat="server" Text="Post for Sale" OnClick="submitButton2_Click" />
+            <asp:Button ID="SaleButton" runat="server" Text="Post for Sale" OnClick="SaleButton_Click" />
             <br />
             <br />
-            <asp:Button ID="RentButton" runat="server" Text="Post for Rent" OnClick="submitButton2_Click" />
+            <asp:Button ID="RentButton" runat="server" Text="Post for Rent" OnClick="RentButton_Click" />
             <br />
             <br />
             <asp:Label ID="Label2" runat="server"></asp:Label>

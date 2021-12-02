@@ -21,13 +21,13 @@
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="manageButton" runat="server" Font-Size="Large" OnClick="buyerButton_Click" Text="Manage owned properties" />
+            <asp:Button ID="manageButton" runat="server" Font-Size="Large" OnClick="manageButton_Click" Text="Manage owned properties" />
             <br />
             <br />
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="addButton" runat="server" Font-Size="Large" OnClick="renterButton_Click" Text="Add a new property" />
+            <asp:Button ID="addButton" runat="server" Font-Size="Large" OnClick="addButton_Click" Text="Add a new property" />
         </div>
     </form>
 </body>

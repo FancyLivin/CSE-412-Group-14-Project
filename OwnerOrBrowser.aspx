@@ -20,13 +20,13 @@
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="ownerButton" runat="server" Font-Size="Large" OnClick="buyerButton_Click" Text="I am an owner" />
+            <asp:Button ID="ownerButton" runat="server" Font-Size="Large" OnClick="ownerButton_Click" Text="I am an owner" />
             <br />
             <br />
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="browserButton" runat="server" Font-Size="Large" OnClick="renterButton_Click" Text="I am a browser" />
+            <asp:Button ID="browserButton" runat="server" Font-Size="Large" OnClick="browserButton_Click" Text="I am a browser" />
         </div>
     </form>
 </body>
