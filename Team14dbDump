@@ -1,0 +1,509 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.4
+-- Dumped by pg_dump version 13.4
+
+-- Started on 2021-12-02 18:26:09
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 200 (class 1259 OID 16398)
+-- Name: buyable; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.buyable (
+    "propID" integer NOT NULL,
+    price integer NOT NULL
+);
+
+
+ALTER TABLE public.buyable OWNER TO postgres;
+
+--
+-- TOC entry 201 (class 1259 OID 16401)
+-- Name: buyer; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.buyer (
+    "clientID" integer NOT NULL,
+    "maxPrice" integer,
+    "minPrice" integer,
+    "bedPref" integer,
+    "bathPref" integer,
+    "locPref" character(255),
+    "stylePref" character(255)
+);
+
+
+ALTER TABLE public.buyer OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 16407)
+-- Name: house; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.house (
+    "propID" integer NOT NULL,
+    address character(255) NOT NULL,
+    city character(255) NOT NULL,
+    country character(255) NOT NULL,
+    "yearBuilt" integer NOT NULL,
+    sqft integer NOT NULL,
+    beds integer NOT NULL,
+    baths integer NOT NULL,
+    "houseStyle" character(255),
+    "ownerID" integer NOT NULL
+);
+
+
+ALTER TABLE public.house OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 16413)
+-- Name: house_propID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."house_propID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."house_propID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3051 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: house_propID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."house_propID_seq" OWNED BY public.house."propID";
+
+
+--
+-- TOC entry 204 (class 1259 OID 16415)
+-- Name: person; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.person (
+    "clientID" integer NOT NULL,
+    "firstName" character(255) NOT NULL,
+    "lastName" character(255) NOT NULL,
+    "phoneNum" text NOT NULL,
+    pwd character(255) NOT NULL,
+    email character(255) NOT NULL
+);
+
+
+ALTER TABLE public.person OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 16421)
+-- Name: person_clientID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."person_clientID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."person_clientID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 3052 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: person_clientID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."person_clientID_seq" OWNED BY public.person."clientID";
+
+
+--
+-- TOC entry 206 (class 1259 OID 16423)
+-- Name: rentable; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.rentable (
+    "propID" integer NOT NULL,
+    "priceMonth" integer NOT NULL,
+    "yrsToRent" integer NOT NULL
+);
+
+
+ALTER TABLE public.rentable OWNER TO postgres;
+
+--
+-- TOC entry 207 (class 1259 OID 16426)
+-- Name: renter; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.renter (
+    "clientID" integer NOT NULL,
+    "yrsToRent" integer,
+    "maxPrice" integer,
+    "minPrice" integer,
+    "bedPref" integer,
+    "bathPref" integer,
+    "locPref" character(255),
+    "stylePref" character(255)
+);
+
+
+ALTER TABLE public.renter OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 16432)
+-- Name: renting; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.renting (
+    "propID" integer NOT NULL,
+    "clientID" integer NOT NULL,
+    "rentTime" integer
+);
+
+
+ALTER TABLE public.renting OWNER TO postgres;
+
+--
+-- TOC entry 2880 (class 2604 OID 16435)
+-- Name: house propID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.house ALTER COLUMN "propID" SET DEFAULT nextval('public."house_propID_seq"'::regclass);
+
+
+--
+-- TOC entry 2881 (class 2604 OID 16436)
+-- Name: person clientID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.person ALTER COLUMN "clientID" SET DEFAULT nextval('public."person_clientID_seq"'::regclass);
+
+
+--
+-- TOC entry 3037 (class 0 OID 16398)
+-- Dependencies: 200
+-- Data for Name: buyable; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.buyable ("propID", price) FROM stdin;
+18	20000
+1	410000
+2	420000
+3	430000
+4	440000
+5	450000
+6	460000
+7	470000
+8	480000
+9	490000
+10	500000
+11	510000
+12	520000
+13	530000
+14	540000
+15	550000
+16	560000
+\.
+
+
+--
+-- TOC entry 3038 (class 0 OID 16401)
+-- Dependencies: 201
+-- Data for Name: buyer; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.buyer ("clientID", "maxPrice", "minPrice", "bedPref", "bathPref", "locPref", "stylePref") FROM stdin;
+4	-1	-1	-1	-1	                                                                                                                                                                                                                                                               	6                                                                                                                                                                                                                                                              
+21	400000	2000	-1	-1	                                                                                                                                                                                                                                                               	6                                                                                                                                                                                                                                                              
+\.
+
+
+--
+-- TOC entry 3039 (class 0 OID 16407)
+-- Dependencies: 202
+-- Data for Name: house; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.house ("propID", address, city, country, "yearBuilt", sqft, beds, baths, "houseStyle", "ownerID") FROM stdin;
+2	2345 N 2nd Street                                                                                                                                                                                                                                              	Anaheim                                                                                                                                                                                                                                                        	USA                                                                                                                                                                                                                                                            	1990	3000	4	3	contemporary                                                                                                                                                                                                                                                   	2
+3	3456 N 3rd Street                                                                                                                                                                                                                                              	Austin                                                                                                                                                                                                                                                         	USA                                                                                                                                                                                                                                                            	1980	7000	5	10	mcmansion                                                                                                                                                                                                                                                      	3
+4	4567 N 4th Street                                                                                                                                                                                                                                              	San Diego                                                                                                                                                                                                                                                      	USA                                                                                                                                                                                                                                                            	1990	3000	4	3	craftsman                                                                                                                                                                                                                                                      	4
+5	5678 N 5th Street                                                                                                                                                                                                                                              	Springfield                                                                                                                                                                                                                                                    	USA                                                                                                                                                                                                                                                            	2000	2000	4	2	farmhouse                                                                                                                                                                                                                                                      	5
+6	6789 N 6th Street                                                                                                                                                                                                                                              	Springfiled                                                                                                                                                                                                                                                    	USA                                                                                                                                                                                                                                                            	2010	2000	4	2	colonial                                                                                                                                                                                                                                                       	6
+7	7890 N 7th Street                                                                                                                                                                                                                                              	Springfield                                                                                                                                                                                                                                                    	USA                                                                                                                                                                                                                                                            	2000	2000	4	2	craftsman                                                                                                                                                                                                                                                      	6
+8	8901 N 8th Street                                                                                                                                                                                                                                              	New New York City                                                                                                                                                                                                                                              	USA                                                                                                                                                                                                                                                            	1990	1500	3	2	farmhouse                                                                                                                                                                                                                                                      	10
+9	9012 N 9th Street                                                                                                                                                                                                                                              	New New York City                                                                                                                                                                                                                                              	USA                                                                                                                                                                                                                                                            	1980	1500	3	2	colonial                                                                                                                                                                                                                                                       	14
+10	9876 N 10th Street                                                                                                                                                                                                                                             	New New York City                                                                                                                                                                                                                                              	USA                                                                                                                                                                                                                                                            	2000	1500	3	2	contemporary                                                                                                                                                                                                                                                   	16
+11	123 ASU Way                                                                                                                                                                                                                                                    	Phoenix                                                                                                                                                                                                                                                        	USA                                                                                                                                                                                                                                                            	2000	2000	3	2	ranch                                                                                                                                                                                                                                                          	1
+12	234 ASU Way                                                                                                                                                                                                                                                    	Phoenix                                                                                                                                                                                                                                                        	USA                                                                                                                                                                                                                                                            	2000	2000	3	2	ranch                                                                                                                                                                                                                                                          	1
+13	345 ASU Way                                                                                                                                                                                                                                                    	Phoenix                                                                                                                                                                                                                                                        	USA                                                                                                                                                                                                                                                            	2000	2000	3	2	ranch                                                                                                                                                                                                                                                          	2
+14	456 ASU Way                                                                                                                                                                                                                                                    	Phoenix                                                                                                                                                                                                                                                        	USA                                                                                                                                                                                                                                                            	2000	2000	3	2	ranch                                                                                                                                                                                                                                                          	2
+15	567 ASU Way                                                                                                                                                                                                                                                    	Phoenix                                                                                                                                                                                                                                                        	USA                                                                                                                                                                                                                                                            	2000	2000	3	2	ranch                                                                                                                                                                                                                                                          	4
+16	678 ASU Way                                                                                                                                                                                                                                                    	Phoenix                                                                                                                                                                                                                                                        	USA                                                                                                                                                                                                                                                            	2000	2000	3	2	ranch                                                                                                                                                                                                                                                          	4
+18	122 E Person Dr                                                                                                                                                                                                                                                	Tempe                                                                                                                                                                                                                                                          	USA                                                                                                                                                                                                                                                            	1999	1000	3	4	mcmansion                                                                                                                                                                                                                                                      	21
+21	811 W House Blvd                                                                                                                                                                                                                                               	Chandler                                                                                                                                                                                                                                                       	USA                                                                                                                                                                                                                                                            	1812	2000	2	2	craftsman                                                                                                                                                                                                                                                      	19
+1	1234 N 1st Street                                                                                                                                                                                                                                              	Phoenix                                                                                                                                                                                                                                                        	USA                                                                                                                                                                                                                                                            	2000	3000	4	3	ranch                                                                                                                                                                                                                                                          	4
+23	222 W Red Blvd                                                                                                                                                                                                                                                 	Phoenix                                                                                                                                                                                                                                                        	USA                                                                                                                                                                                                                                                            	1989	1700	2	3	ranch                                                                                                                                                                                                                                                          	21
+\.
+
+
+--
+-- TOC entry 3041 (class 0 OID 16415)
+-- Dependencies: 204
+-- Data for Name: person; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.person ("clientID", "firstName", "lastName", "phoneNum", pwd, email) FROM stdin;
+1	Anthony                                                                                                                                                                                                                                                        	Mac                                                                                                                                                                                                                                                            	602-555-1111	Pa$$word1                                                                                                                                                                                                                                                      	amac@gmail.com                                                                                                                                                                                                                                                 
+2	Lingge                                                                                                                                                                                                                                                         	Zhang                                                                                                                                                                                                                                                          	602-555-1112	Pa$$word2                                                                                                                                                                                                                                                      	lzhang@gmail.com                                                                                                                                                                                                                                               
+3	Michael                                                                                                                                                                                                                                                        	Moore                                                                                                                                                                                                                                                          	602-555-1113	Pa$$word3                                                                                                                                                                                                                                                      	mmoore@gmail.com                                                                                                                                                                                                                                               
+4	Yamaan                                                                                                                                                                                                                                                         	Khan                                                                                                                                                                                                                                                           	602-555-1114	Pa$$word4                                                                                                                                                                                                                                                      	ykhan@gmail.com                                                                                                                                                                                                                                                
+5	Homer                                                                                                                                                                                                                                                          	Simpson                                                                                                                                                                                                                                                        	602-555-1115	Pa$$word5                                                                                                                                                                                                                                                      	hsimpson@gmail.com                                                                                                                                                                                                                                             
+6	Marge                                                                                                                                                                                                                                                          	Simpson                                                                                                                                                                                                                                                        	602-555-1116	Pa$$word6                                                                                                                                                                                                                                                      	msimpson@gmail.com                                                                                                                                                                                                                                             
+7	Bart                                                                                                                                                                                                                                                           	Simpson                                                                                                                                                                                                                                                        	602-555-1117	Pa$$word7                                                                                                                                                                                                                                                      	bsimpson@gmail.com                                                                                                                                                                                                                                             
+8	Lisa                                                                                                                                                                                                                                                           	Simpson                                                                                                                                                                                                                                                        	602-555-1118	Pa$$word8                                                                                                                                                                                                                                                      	lsimpson@gmail.com                                                                                                                                                                                                                                             
+9	Maggie                                                                                                                                                                                                                                                         	Simpson                                                                                                                                                                                                                                                        	602-555-1119	Pa$$word9                                                                                                                                                                                                                                                      	msimpson1@gmail.com                                                                                                                                                                                                                                            
+10	Philip                                                                                                                                                                                                                                                         	Fry                                                                                                                                                                                                                                                            	602-555-1120	Pa$$word10                                                                                                                                                                                                                                                     	pfry@gmail.com                                                                                                                                                                                                                                                 
+11	Bender                                                                                                                                                                                                                                                         	Rodriguez                                                                                                                                                                                                                                                      	602-555-1121	Pa$$word11                                                                                                                                                                                                                                                     	brodriguez@gmail.com                                                                                                                                                                                                                                           
+12	Amy                                                                                                                                                                                                                                                            	Wong                                                                                                                                                                                                                                                           	602-555-1122	Pa$$word12                                                                                                                                                                                                                                                     	awong@gmail.com                                                                                                                                                                                                                                                
+13	Dr                                                                                                                                                                                                                                                             	Zoidberg                                                                                                                                                                                                                                                       	602-555-1123	Pa$$word13                                                                                                                                                                                                                                                     	zoidberg@gmail.com                                                                                                                                                                                                                                             
+14	Professor                                                                                                                                                                                                                                                      	Farnsworth                                                                                                                                                                                                                                                     	602-555-1124	Pa$$word14                                                                                                                                                                                                                                                     	farnsworth@gmail.com                                                                                                                                                                                                                                           
+15	Zapp                                                                                                                                                                                                                                                           	Brannigan                                                                                                                                                                                                                                                      	602-555-1125	Pa$$word15                                                                                                                                                                                                                                                     	zbrannigan@gmail.com                                                                                                                                                                                                                                           
+16	Kif                                                                                                                                                                                                                                                            	Kroker                                                                                                                                                                                                                                                         	602-555-1126	Pa$$word16                                                                                                                                                                                                                                                     	kkroker@gmail.com                                                                                                                                                                                                                                              
+17	Hermes                                                                                                                                                                                                                                                         	Conrad                                                                                                                                                                                                                                                         	602-555-1127	Pa$$word17                                                                                                                                                                                                                                                     	hconrad@gmail.com                                                                                                                                                                                                                                              
+18	Evan                                                                                                                                                                                                                                                           	Cygan                                                                                                                                                                                                                                                          	1112223333	Pa$$word7                                                                                                                                                                                                                                                      	testemail@gmail.com                                                                                                                                                                                                                                            
+19	Test                                                                                                                                                                                                                                                           	Name                                                                                                                                                                                                                                                           	111-222-3333	Pa$$word19                                                                                                                                                                                                                                                     	testemail2@gmail.com                                                                                                                                                                                                                                           
+20	Yamaan                                                                                                                                                                                                                                                         	Name                                                                                                                                                                                                                                                           	222-333-5555	Pa$$word20                                                                                                                                                                                                                                                     	testemail3@gmail.com                                                                                                                                                                                                                                           
+21	Bob                                                                                                                                                                                                                                                            	Smith                                                                                                                                                                                                                                                          	444-555-6666	Pa$$word21                                                                                                                                                                                                                                                     	bobsmith@gmail.com                                                                                                                                                                                                                                             
+\.
+
+
+--
+-- TOC entry 3043 (class 0 OID 16423)
+-- Dependencies: 206
+-- Data for Name: rentable; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.rentable ("propID", "priceMonth", "yrsToRent") FROM stdin;
+21	1500	12
+23	1500	4
+\.
+
+
+--
+-- TOC entry 3044 (class 0 OID 16426)
+-- Dependencies: 207
+-- Data for Name: renter; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.renter ("clientID", "yrsToRent", "maxPrice", "minPrice", "bedPref", "bathPref", "locPref", "stylePref") FROM stdin;
+4	-1	-1	-1	-1	-1	                                                                                                                                                                                                                                                               	6                                                                                                                                                                                                                                                              
+18	10000	0	0	0	0	locP                                                                                                                                                                                                                                                           	styleP                                                                                                                                                                                                                                                         
+19	12	50000	500	-1	-1	                                                                                                                                                                                                                                                               	6                                                                                                                                                                                                                                                              
+21	4	-1	-1	-1	-1	                                                                                                                                                                                                                                                               	6                                                                                                                                                                                                                                                              
+\.
+
+
+--
+-- TOC entry 3045 (class 0 OID 16432)
+-- Dependencies: 208
+-- Data for Name: renting; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.renting ("propID", "clientID", "rentTime") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3053 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: house_propID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."house_propID_seq"', 1, false);
+
+
+--
+-- TOC entry 3054 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: person_clientID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."person_clientID_seq"', 1, false);
+
+
+--
+-- TOC entry 2889 (class 2606 OID 16438)
+-- Name: person Email; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.person
+    ADD CONSTRAINT "Email" UNIQUE (email);
+
+
+--
+-- TOC entry 2891 (class 2606 OID 16440)
+-- Name: person Phone_Number; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.person
+    ADD CONSTRAINT "Phone_Number" UNIQUE ("phoneNum");
+
+
+--
+-- TOC entry 2883 (class 2606 OID 16442)
+-- Name: buyable Property ID Unique; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.buyable
+    ADD CONSTRAINT "Property ID Unique" UNIQUE ("propID");
+
+
+--
+-- TOC entry 2899 (class 2606 OID 16444)
+-- Name: renting Property Rental; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.renting
+    ADD CONSTRAINT "Property Rental" PRIMARY KEY ("propID", "clientID");
+
+
+--
+-- TOC entry 2895 (class 2606 OID 16446)
+-- Name: rentable Rentable ID Unique; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rentable
+    ADD CONSTRAINT "Rentable ID Unique" UNIQUE ("propID");
+
+
+--
+-- TOC entry 2897 (class 2606 OID 16448)
+-- Name: renter Renter ID; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.renter
+    ADD CONSTRAINT "Renter ID" UNIQUE ("clientID");
+
+
+--
+-- TOC entry 2885 (class 2606 OID 16450)
+-- Name: house Unique Location; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.house
+    ADD CONSTRAINT "Unique Location" UNIQUE (address, city, country);
+
+
+--
+-- TOC entry 2887 (class 2606 OID 16452)
+-- Name: house house_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.house
+    ADD CONSTRAINT house_pkey PRIMARY KEY ("propID");
+
+
+--
+-- TOC entry 2893 (class 2606 OID 16454)
+-- Name: person person_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.person
+    ADD CONSTRAINT person_pkey PRIMARY KEY ("clientID");
+
+
+--
+-- TOC entry 2905 (class 2606 OID 16455)
+-- Name: renting Client; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.renting
+    ADD CONSTRAINT "Client" FOREIGN KEY ("clientID") REFERENCES public.renter("clientID") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2901 (class 2606 OID 16460)
+-- Name: buyer Client ID; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.buyer
+    ADD CONSTRAINT "Client ID" FOREIGN KEY ("clientID") REFERENCES public.person("clientID") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2904 (class 2606 OID 16465)
+-- Name: renter Client ID; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.renter
+    ADD CONSTRAINT "Client ID" FOREIGN KEY ("clientID") REFERENCES public.person("clientID") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2902 (class 2606 OID 16470)
+-- Name: house Owner ID; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.house
+    ADD CONSTRAINT "Owner ID" FOREIGN KEY ("ownerID") REFERENCES public.person("clientID") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2906 (class 2606 OID 16475)
+-- Name: renting Property; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.renting
+    ADD CONSTRAINT "Property" FOREIGN KEY ("propID") REFERENCES public.rentable("propID") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2900 (class 2606 OID 16480)
+-- Name: buyable Property ID; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.buyable
+    ADD CONSTRAINT "Property ID" FOREIGN KEY ("propID") REFERENCES public.house("propID") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2903 (class 2606 OID 16485)
+-- Name: rentable Property ID; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rentable
+    ADD CONSTRAINT "Property ID" FOREIGN KEY ("propID") REFERENCES public.house("propID") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+-- Completed on 2021-12-02 18:26:10
+
+--
+-- PostgreSQL database dump complete
+--
+
